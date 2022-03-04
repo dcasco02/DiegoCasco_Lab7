@@ -62,7 +62,7 @@ public class Tablaposiciones {
                 sc = new Scanner(archivo);
                 sc.useDelimiter(";");
                 while (sc.hasNext()) {
-                    ligaFutbol.add(new Equipos(sc.next());
+                    ligaFutbol.add(new Equipos(sc.next()));
                 }
             } catch (Exception ex) {
             }
