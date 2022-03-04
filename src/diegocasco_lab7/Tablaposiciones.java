@@ -63,7 +63,7 @@ public class Tablaposiciones {
                 bw.write(t.getGolesfavor()+";");
                 bw.write(t.getGolescontra()+";");
                 bw.write(t.getGolesdieferencia()+";");
-                bw.write(t.getPuntos()+";");
+                bw.write(t.getPuntos()+"\n");
             }
             bw.flush();
         } catch (Exception ex) {
@@ -84,6 +84,6 @@ public class Tablaposiciones {
             } catch (Exception ex) {
             }
             sc.close();
-        }//FIN IF
+        }
     }
 }

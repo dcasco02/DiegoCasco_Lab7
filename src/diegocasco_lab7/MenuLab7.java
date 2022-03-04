@@ -39,6 +39,8 @@ public class MenuLab7 extends javax.swing.JFrame {
         Eliminar = new javax.swing.JButton();
         CargarArchivo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,16 +79,13 @@ public class MenuLab7 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Agregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Eliminar)
-                        .addGap(15, 15, 15))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Modificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
-                        .addComponent(CargarArchivo)
-                        .addGap(0, 6, Short.MAX_VALUE))))
+                    .addComponent(Modificar)
+                    .addComponent(Agregar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CargarArchivo)
+                    .addComponent(Eliminar))
+                .addGap(63, 63, 63))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +94,7 @@ public class MenuLab7 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Agregar)
                     .addComponent(Eliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Modificar)
                     .addComponent(CargarArchivo))
@@ -104,18 +103,36 @@ public class MenuLab7 extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Equipos", jPanel1);
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 242, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab2", jPanel2);
+        jTabbedPane1.addTab("Liga", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,15 +140,15 @@ public class MenuLab7 extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,13 +158,13 @@ public class MenuLab7 extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Tablaposiciones tp=
-                    new Tablaposiciones("partidos.txt");
-            tp.cargarArchivo();
+                    new Tablaposiciones("./partidos.txt");
             String n;
             n=JOptionPane.showInputDialog("Nombre");
             Equipos e= new Equipos(n);
             tp.getLigaFutbol().add(e);
             tp.escribirArchivo();
+            tp.cargarArchivo();
         } catch (IOException ex) {
             Logger.getLogger(MenuLab7.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -156,12 +173,11 @@ public class MenuLab7 extends javax.swing.JFrame {
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
         // TODO add your handling code here:
         Tablaposiciones pa=
-                new Tablaposiciones("partidos.txt");  
+                new Tablaposiciones("./partidos.txt");  
         int p;
         String n;
         p=Integer.parseInt(JOptionPane.showInputDialog("Posicion"));
         n=JOptionPane.showInputDialog("Nombre");
-        
         pa.cargarArchivo();
         pa.getArchivo().get(p).setNombre(n);
         try {
@@ -175,10 +191,10 @@ public class MenuLab7 extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Tablaposiciones ap=
-                    new Tablaposiciones("partidos.txt");
+                    new Tablaposiciones("./partidos.txt");
             int p;
             p=Integer.parseInt(JOptionPane.showInputDialog("Posicion"));
-            ap.cargarArchivo();
+
             ap.getLigaFutbol().remove(p);
             ap.escribirArchivo();
         } catch (IOException ex) {
@@ -189,7 +205,7 @@ public class MenuLab7 extends javax.swing.JFrame {
     private void CargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarArchivoActionPerformed
         // TODO add your handling code here:
         Tablaposiciones ap=
-                new Tablaposiciones("./blady.txt");        
+                new Tablaposiciones("./partidos.txt");        
         ap.cargarArchivo();
         for (Equipos t : ap.getLigaFutbol()) {
             System.out.println( ap.getLigaFutbol().indexOf(t)+"- "+t );
@@ -238,6 +254,8 @@ public class MenuLab7 extends javax.swing.JFrame {
     private javax.swing.JButton Modificar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
