@@ -20,6 +20,18 @@ public class Equipos {
     private int golesdieferencia;
     private int puntos;
 
+    public Equipos(String Nombreequipo, int partidosjugados, int partidosganados, int partidosempatados, int partidosperdidos, int golesfavor, int golescontra, int golesdieferencia, int puntos) {
+        this.Nombreequipo = Nombreequipo;
+        this.partidosjugados = 0;
+        this.partidosganados = 0;
+        this.partidosempatados = 0;
+        this.partidosperdidos = 0;
+        this.golesfavor = 0;
+        this.golescontra = 0;
+        this.golesdieferencia = 0;
+        this.puntos = 0;
+    }
+
     public Equipos(String Nombreequipo) {
         this.Nombreequipo = Nombreequipo;
     }

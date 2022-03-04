@@ -55,7 +55,15 @@ public class Tablaposiciones {
             fw = new FileWriter(archivo, false);
             bw = new BufferedWriter(fw);
             for (Equipos t : ligaFutbol) {
-                bw.write(t.getNombreequipo());
+                bw.write(t.getNombreequipo()+ ";");
+                bw.write(t.getPartidosjugados()+";");
+                bw.write(t.getPartidosganados()+";");
+                bw.write(t.getPartidosempatados()+";");
+                bw.write(t.getPartidosperdidos()+";");
+                bw.write(t.getGolesfavor()+";");
+                bw.write(t.getGolescontra()+";");
+                bw.write(t.getGolesdieferencia()+";");
+                bw.write(t.getPuntos()+";");
             }
             bw.flush();
         } catch (Exception ex) {
