@@ -20,11 +20,9 @@ public class Tablaposiciones {
     private ArrayList<Equipos> ligaFutbol =new ArrayList();
     private File archivo=null;
 
-    Tablaposiciones(String partidostxt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     public Tablaposiciones(String path) {
+        archivo = new File(path);
     }
-
-
     public ArrayList<Equipos> getLigaFutbol() {
         return ligaFutbol;
     }

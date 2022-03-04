@@ -6,7 +6,6 @@
 package diegocasco_lab7;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -194,6 +193,7 @@ public class MenuLab7 extends javax.swing.JFrame {
         ap.cargarArchivo();
         for (Equipos t : ap.getLigaFutbol()) {
             System.out.println( ap.getLigaFutbol().indexOf(t)+"- "+t );
+        }    
     }//GEN-LAST:event_CargarArchivoActionPerformed
 
     /**
