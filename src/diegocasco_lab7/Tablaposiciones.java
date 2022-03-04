@@ -20,6 +20,11 @@ public class Tablaposiciones {
     private ArrayList<Equipos> ligaFutbol =new ArrayList();
     private File archivo=null;
 
+    Tablaposiciones(String partidostxt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     public ArrayList<Equipos> getLigaFutbol() {
         return ligaFutbol;
     }
@@ -39,6 +44,12 @@ public class Tablaposiciones {
         this.ligaFutbol.add(e);
         
     }
+
+    @Override
+    public String toString() {
+        return "ligaFutbol=" + ligaFutbol;
+    }
+    
      public void escribirArchivo() throws IOException {
         FileWriter fw = null;
         BufferedWriter bw = null;

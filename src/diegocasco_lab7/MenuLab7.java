@@ -5,6 +5,12 @@
  */
 package diegocasco_lab7;
 
+import java.io.IOException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dcasc
@@ -29,19 +35,72 @@ public class MenuLab7 extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        Agregar = new javax.swing.JButton();
+        Modificar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        CargarArchivo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Agregar.setText("Agregar");
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
+
+        Modificar.setText("Modificar ");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarActionPerformed(evt);
+            }
+        });
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+
+        CargarArchivo.setText("Cargar Archivo");
+        CargarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CargarArchivoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Agregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Eliminar)
+                        .addGap(15, 15, 15))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Modificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                        .addComponent(CargarArchivo)
+                        .addGap(0, 6, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 242, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Agregar)
+                    .addComponent(Eliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Modificar)
+                    .addComponent(CargarArchivo))
+                .addGap(71, 71, 71))
         );
 
         jTabbedPane1.addTab("tab1", jPanel1);
@@ -79,6 +138,64 @@ public class MenuLab7 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        try {
+            // TODO add your handling code here:
+            Tablaposiciones tp=
+                    new Tablaposiciones("partidos.txt");
+            tp.cargarArchivo();
+            String n;
+            n=JOptionPane.showInputDialog("Nombre");
+            Equipos e= new Equipos(n);
+            tp.getLigaFutbol().add(e);
+            tp.escribirArchivo();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuLab7.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_AgregarActionPerformed
+
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+        // TODO add your handling code here:
+        Tablaposiciones pa=
+                new Tablaposiciones("partidos.txt");  
+        int p;
+        String n;
+        p=Integer.parseInt(JOptionPane.showInputDialog("Posicion"));
+        n=JOptionPane.showInputDialog("Nombre");
+        
+        pa.cargarArchivo();
+        pa.getArchivo().get(p).setNombre(n);
+        try {
+            pa.escribirArchivo();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuLab7.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ModificarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        try {
+            // TODO add your handling code here:
+            Tablaposiciones ap=
+                    new Tablaposiciones("partidos.txt");
+            int p;
+            p=Integer.parseInt(JOptionPane.showInputDialog("Posicion"));
+            ap.cargarArchivo();
+            ap.getLigaFutbol().remove(p);
+            ap.escribirArchivo();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuLab7.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void CargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarArchivoActionPerformed
+        // TODO add your handling code here:
+        Tablaposiciones ap=
+                new Tablaposiciones("./blady.txt");        
+        ap.cargarArchivo();
+        for (Equipos t : ap.getLigaFutbol()) {
+            System.out.println( ap.getLigaFutbol().indexOf(t)+"- "+t );
+    }//GEN-LAST:event_CargarArchivoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -115,6 +232,10 @@ public class MenuLab7 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Agregar;
+    private javax.swing.JButton CargarArchivo;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Modificar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
