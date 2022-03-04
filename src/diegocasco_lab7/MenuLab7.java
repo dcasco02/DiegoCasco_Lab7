@@ -105,13 +105,16 @@ public class MenuLab7 extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -159,12 +162,12 @@ public class MenuLab7 extends javax.swing.JFrame {
             // TODO add your handling code here:
             Tablaposiciones tp=
                     new Tablaposiciones("./partidos.txt");
+            tp.cargarArchivo();
             String n;
             n=JOptionPane.showInputDialog("Nombre");
             Equipos e= new Equipos(n);
             tp.getLigaFutbol().add(e);
             tp.escribirArchivo();
-            tp.cargarArchivo();
         } catch (IOException ex) {
             Logger.getLogger(MenuLab7.class.getName()).log(Level.SEVERE, null, ex);
         }
